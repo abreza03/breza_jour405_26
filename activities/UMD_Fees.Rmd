@@ -9,6 +9,7 @@ Follow along with the demo to learn how to calculate percentage change using R a
 
 
 ```{r}
+install.packages("tidyverse")
 library(tidyverse)
 ```
 
