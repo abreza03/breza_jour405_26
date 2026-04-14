@@ -50,4 +50,32 @@ matches |>
 ### Task 6: Describe the results of both the correlation calculation and the scatterplot.
 
 
+** The correlation calculation and subsequent scatterplot show us that there is very little correlation between the number of fouls a team has in a game and the outcome of that game. As we discussed in class, there are examples where a team had six fouls and lost by 10 and a team who had 16 fouls and won by 10. There are other factors that go into it of course, but we can understand that fouls by themselves do not heavily impact the outcome of a game. However, if we were to add additional factors, that will change. **
+
+### Task 7: Choose another variable and repeat the steps in Tasks 4 - 5, then describe the result
+
+** What I first want to do is create another category that establishes the differential between a team's shots on goal and their opponents shots on goal**
+
+```{r}
+matches <- matches |> mutate(so_g_diff = so_g - defensive_so_g)
+```
+
+
+** Now I'll look at the correlation between the two differentials.**
+
+```{r}
+matches |> summarize(correlation = cor(so_g_diff, goal_diff, method="pearson"))
+```
+
+
+```{r}
+matches |> 
+  ggplot() +
+  geom_point(aes(x=goal_diff, y=so_g_diff)) +
+  geom_smooth(aes(x=goal_diff, y=so_g_diff), method="lm")
+```
+
+
+** While still not perfect, we can see that the difference between a number of team's shots on goal and how many shots on goal they allow are decently correlated to their goal differential.**
+
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
