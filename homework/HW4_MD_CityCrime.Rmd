@@ -72,3 +72,22 @@ Write up a lede and nutgraf of a story with the _best_ story idea you've found i
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+### Task 10: HW5
+```{r}
+md_cities_percentiles <- md_cities_rates |>
+  mutate(percentile = ntile(violent_rate_2020, 100))
+```
+
+** 10 are above the 90th percentile, 11 if you include the 90th percentile. **
+
+```{r}
+md_cities_percentiles |>
+  group_by(city) |>
+  summarise(violent_rate_2020) |>
+  mutate(
+    rate_range = IQR(violent_rate_2020)
+  )
+```
+
+** Don't think I did this right. Would like some clarification on the correct syntax for the IQR finding. **
