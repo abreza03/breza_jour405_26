@@ -23,22 +23,26 @@ crimes <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads
 
 ### Task 3: Use janitor to clean up the column names
 
+```{r}
+crimes_cleaned <- clean_names(crimes)
+```
 
 
 ### Task 4: Calculate the total crime rate for each year (picking our unit!)
 
 ```{r}
-crimes |> mutate(total_rate = grand_total/population * 10000)
+crimes_cleaned |> 
+  mutate(total_rate = grand_total/population * 10000) |>
+  arrange(desc(total_rate))
 ```
-
 
 
 ### Task 5: Calculate the violent and property crime rates for each year (same unit)
 
 ```{r}
-crimes_with_rates <- crimes |> mutate(violent_rate = violent_crime_total/population * 10000, property_rate = property_crime_total/population * 10000)
+crimes_with_rates <- crimes_cleaned |> 
+  mutate(violent_rate = violent_crime_total/population * 10000, property_rate = property_crime_total/population * 10000)
 ```
-
 
 
 ### Task 6: Describe our results
@@ -46,6 +50,7 @@ crimes_with_rates <- crimes |> mutate(violent_rate = violent_crime_total/populat
 Write a few sentences about what you found in the data. What years had the highest crime rates? What years had the lowest crime rates? Does the pattern match your expectations?
 
 
+** I think one of the most notable takeaways is the fact that the total crime rate was lowered in every year from 2009-2020, with some dramatic decreases. The vast majority of years with the highest crime rates occurred from the late 1970s through the 1990s. This checks out, considering the lack of crime fighting resources then compared to now. A good story pitch would be investigating what specific things were implemented that caused a consistent decrease over time in the 21st century, and perhaps extra measures that have been taken to ensure a decrease continues to occur year over year. **
 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
