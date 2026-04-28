@@ -1,4 +1,3 @@
-
 ---
 title: "Multiple Regression Analysis in R"
 ---
@@ -9,7 +8,7 @@ Multiple regression analysis is a statistical method used to understand the rela
 
 ```{r setup}
 library(tidyverse)
-#install.packages('corrplot')
+install.packages('corrplot')
 library(corrplot)
 ```
 
@@ -26,7 +25,7 @@ teams <- read_csv("https://raw.githubusercontent.com/dwillis/jour405_files/main/
 Next, we construct a linear model to analyze how different factors like `Yards Gained`, `Takeaways`, and `Points Scored` influence the number of wins. This model helps us quantify the relationships and assess which factors are significant predictors of success.
 
 ```{r}
-model <- lm(Wins ~ `Yards Gained` + Takeaways + `Points Scored`, data = teams)
+model <- lm(Wins ~ Takeaways + `Points Scored`, data = teams)
 summary(model)
 ```
 
@@ -54,7 +53,9 @@ The coefficients tell us the estimated effect of each independent variable on th
 
 Is this a useful model, based on what you've seen? Why?
 
-ANSWER HERE
+
+** It is a helpful model because it gives us a more clear idea than any linear regression model would in determining what truly influenced the number of wins a team had. However, it's far from a great model, and shouldn't be the final model we use to try to find our outcome. We should change some of the variables, such as removing yards gained and adding giveaways. I think an even better idea would be to create differentials between takeaways & giveaways. **
+
 
 ## Correlation Analysis
 
@@ -80,8 +81,33 @@ The results from our correlation analysis show the strength of the relationships
 
 Which of these three factors - Yards Gained, Takeaways and Points Scored - have the most impact on wins? Are there any that do not seem impactful at all?
 
-ANSWER HERE
+
+** Takeaways certainly seems like it has the most impact through the tests that we've run. The correlation between takeaways and wins is statistically significant but not high enough of a number that will influence our model negatively. Yards gained is not impactful whatsoever. I think the better course of action would be to create differentials between what we have (Yards Gained - Yards Allowed & Takeaways - Giveaways). If we had points allowed I would do that too. Football is known as a game of inches and each mistake made carries a decent chunk of significance. And since there are two separate units for offense & defense, differentials would give us a better idea on what specifically might be influencing our number of wins. **
 
 ## Using the Model (3 points)
 
 Without using the words "multiple regression model", describe how you could use this model to cover a team or game.
+
+
+** Our model shows how the minimization of negative plays on either side of the ball will lead to more game or team success. **
+
+```{r}
+teams_updated <- teams |>
+  mutate(
+    turnover_differential = Takeaways - Giveaways,
+    yards_differential = `Yards Gained` - `Yards Allowed`
+  )
+```
+
+
+```{r}
+model <- lm(Wins ~ turnover_differential + yards_differential, data = teams_updated)
+summary(model)
+```
+** As we can see, using the differentials between turnovers and yards yields a better p-value, Adjusted R-squared value, and Residual standard error. This would be a much better model to use in trying to determine team success. **
+
+```{r}
+selected_vars <- teams_updated |>  select(turnover_differential, yards_differential, Wins)
+cor(selected_vars)
+```
+

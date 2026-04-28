@@ -1,6 +1,6 @@
 ---
 title: "Baltimore County 911 Overdose Calls Analysis"
-author: "YOUR NAME HERE"
+author: "Andrew Breza"
 ---
 
 ```{r setup, include=FALSE}
@@ -74,7 +74,7 @@ summary(daily_calls$call_count)
 
 Let's visualize the time series of daily calls. What patterns do you see? If you had to draw horizontal lines that would highlight unusual days, where would those lines be?
 
-ANSWER HERE
+** Just looking at this, there aren't many distinguishable patterns. The only ones I noticed that made sense were New Years' Day, 2023, and 4/20 in 2022, days known for substance abuse. If I were to draw lines highlighting unusual days, the top three would be included, as well as the days where only one call was placed. Outliers aside, I feel like we'd need more nuance to understand why certain days with no holiday or ingrained use of substances had the number of calls they did. **
 
 ```{r daily-calls-plot}
 # Plot daily call volume
