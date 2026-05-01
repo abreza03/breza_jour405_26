@@ -6,23 +6,55 @@ Follow along with the demo to learn how to sample data from a population using R
 
 ### Task 1: Load the tidyverse
 
+```{r}
+library(tidyverse)
+```
 
 ### Task 2: Load 1,000 rows of data with the ages of people from 18-80
 
+```{r}
+set.seed(1234)
+
+population <- tibble(
+  age = sample(18:80, 1000, replace = TRUE)
+)
+```
 
 ### Task 3: Sample 100 rows of data from the dataset
 
+```{r}
+sample100 <- population |>
+  sample_n(100)
+```
 
 ### Task 4: Calculate the mean age and standard deviation of the sample
 
+```{r}
+sample100 |>
+  summarize(
+    mean_age = mean(age),
+    sd_age = sd(age)
+  )
+```
 
 ### Task 5: Calculate the mean age and standard deviation of the population
 
+```{r}
+population |>
+  summarize(
+    mean_age = mean(age),
+    sd_age = sd(age)
+  )
+```
 
 ### Task 6: Compare the sample and population statistics
 
 Compare the means and standard deviations. Are they similar? Go back and re-run the sampling and statistics calculations with a smaller sample size. How do the results change?
 
+** Yes, they are similar. Because our sample is 100 out of 1000, we can expect the values to be similar given that statistically, it's a decent chunk of our total population. As you make your sample size smaller, the numbers are less likely to look similar because more is being left to chance rather than the estimates accurately reflecting anything. **
 
+The sample mean and standard deviation should be fairly close to the population values, though not identical. With a sample of 100 out of 1,000, we'd expect the sample mean to be within a few years of the population mean (around 49) and the standard deviation to be similar (around 18).
+
+When you re-run with a smaller sample size (say 25 or 10), the sample statistics become less reliable — the mean may shift noticeably from the population mean, and the standard deviation may be quite different. This demonstrates a key principle: larger samples produce estimates that are closer to the true population values. With very small samples, random chance plays a bigger role, and your estimates can be misleading.
 
 When finished, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
