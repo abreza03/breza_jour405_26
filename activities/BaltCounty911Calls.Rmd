@@ -137,7 +137,7 @@ unusual_days |>
 
 Let's visualize these unusual days in the context of the full dataset. How do they differ from your answer on Task 3?
 
-ANSWER HERE
+** I think my initial observation of looking for holidays was a strong start, because we can see that both New Years' Day and 4/20 are on this shortened list. A new observation is the particularly low number of calls on Veteran's Day, another national holiday where most people stay home from work. In terms of the other dates, more research would be needed to determine why there were either an unusual high/low amount of calls, as none of the dates stick out for holidays. This further research could include: Was it a Ravens/Orioles home game day? Is there a more niche holiday/celebration specific to Baltimore on any of these days? What day of the week was it? Etc. **
 
 ```{r plot-unusual-days}
 # Create a clean factor for the plot legend
@@ -207,7 +207,7 @@ ggplot(dow_summary, aes(x = day_of_week, y = avg_calls)) +
 
 We can also calculate z-scores that account for the day of the week pattern. How would you describe the day with the highest z-score without using the term "z-score"?
 
-ANSWER HERE
+** Data shows that 911 calls placed for overdoses in Baltimore County are more prevalent on Fridays and Saturdays, but not by as much as one might expect. **
 
 ```{r day-of-week-z-scores}
 # Calculate day-of-week adjusted z-scores
@@ -298,5 +298,5 @@ top_outliers |> kable(digits = 2)
 
 Based on our z-score analysis, what are some potential angles for reporting? What would your next steps be and what would you tell an editor about your findings?
 
-ANSWER HERE
+** I think one potential angle, similar to our PG County murder/heat claim, is that on average, the number of 911 calls for overdoses are higher in warmer months. It's not an exact fit, but it's interesting that the numbers jump & fall slightly in the months where Spring begins and Fall ends. Next steps would include some more research into some of the topics I suggested earlier, such as gamedays, local holidays, etc. As of right now, I don't think there's enough here to warrant a story regarding a correlation between specific events outside of the aforementioned obvious ones (New Years, 4/20), but further research could change that. **
 
