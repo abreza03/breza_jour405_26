@@ -190,7 +190,7 @@ accidents <- accidents |>
     dow_total = sum(total),
     dow_mean = mean(total),
     dow_sd = sd(total),
-    dow_z_score = (dow_total - dow_mean) / dow_sd
+    dow_z_score = (total - dow_mean) / dow_sd
   ) |>
   ungroup()
 
@@ -209,7 +209,7 @@ unusual_dow |>
 ### Task 7 (3 points)
 Compare the days that have extreme z-scores overall versus those with extreme day-of-week z-scores. How do these lists differ? What journalistic insights can you draw from comparing these two different approaches to measuring "unusual" days?
 
-ANSWER HERE
+## The z-scores for extreme days of the week are far higher or lower than the overall extreme z-scores. For the purposes of in-depth and accurate reporting, it's important to dig deeper into the extreme days of the week because it gives us a better understanding of what days are truly more extreme on average rather than taking a few extreme z-score for a particular day and making a claim that that day sees more car accidents. ##
 
 Let's see how many unusual days we have for each day of the week:
 
@@ -288,7 +288,7 @@ unusual_monthly |>
 ### Task 8 (2 points)
 Based on the monthly pattern analysis, which months have the highest and lowest average accidents? Develop a hypothesis about why these seasonal patterns exist.
 
-ANSWER HERE
+## Months with the highest average accidents include May and October, while the month with the lowest average accidents is January. My hypothesis is that these months have these particular averages due to the number of people in College Park. May and October see the majority of the student population in town while also welcoming many others: family members for graduation in May and alumni for homecoming in October. ##
 
 ## Identifying Extreme Outliers
 
@@ -313,9 +313,13 @@ if(nrow(extreme_outliers) > 0) {
 ### Task 9 (2 points)
 For the extreme outliers identified (z-scores beyond ±3), what do they have in common?
 
-ANSWER HERE
+## While the overall data set doesn't have a particularly discernable pattern to them, the days with the two biggest outliers fits right along with my hypothesis above, as they fall in the range of graduation and homecoming. ##
 
 ## Your Best Story Pitch
 
 ### Task 10 (5 points)
 Based on all the analyses performed, craft your best story pitch, including a headline and lede. Be sure to include what kinds of sources/people you'd talk to for the story.
+
+## My best story pitch would be analyzing how many of the car accidents on the extreme outlier days occurred to people coming in from out of town. I'd speak to both UMPD and PG County police, as well as Class of 2021 alums, who would have had family come in during May and would have returned in October. ##
+
+## Data suggests that car accidents in Prince George's County are highest during graduation and homecoming. Due to the greater number of people in and around campus during this time, along with the celebratory nature of both events, car accidents are at their highest. ##
