@@ -94,9 +94,15 @@ ggplot(nonvoters_data, aes(x = weight)) +
 
 1. What is the range of weights in this dataset?
 
+## The range of weights is 2.8088. ##
+
 2. What does it mean when a respondent has a weight of 0.23? What about 3.04?
 
+## When a respondent has a weight of 0.23, it means their response counts as 23% of a "normal" response (a response with a weight of 1), while a respondent with a weight of 3.04's response counts as 304% of a normal response. ## 
+
 3. Why might some respondents be weighted more heavily than others?
+
+## Some respondents are weighted more heavily than others to account for underrepresented groups in our data set. Examples include younger voters, who are usually less likely to value the significance of voting, or perhaps a vote from one political affiliation in an area dominated by the other. ## 
 
 # Exercise 1: Voter Categories and Weighting
 
@@ -233,6 +239,12 @@ kable(comparison, digits = 1, caption = "Difference Between Weighted and Unweigh
 
 1. Which voter category shows the biggest difference between weighted and unweighted results?
 
+## The voter category with the biggest difference between weighted and unweighted results is the part of the group that rarely/never votes saying they would vote in the upcoming election. The weighted result fell by about 3.6 percentage points. ##
+
 2. How might these differences affect reporting on likely voter turnout?
 
+## Despite 3.6 not being a very big number, voter turnout and voting forecasts, especially in hotly contested elections like our past few presidential elections, mean a big difference in predicting who counties and states are likely to vote for and who is likely to win. ## 
+
 3. Why do you think these differences exist? What does this tell us about who might be over or under-represented in the sample?
+
+## These differences exist because in reality, people of different education levels and people of different upbringings factor a lot more into outcomes than a standard view might predict. In this sample, examples of underrepresented voters include those with less education than the "typical" American: some or no college or some high school. An example of an overrepresented voters might be those in large cities, which typically skew more liberal. ## 
