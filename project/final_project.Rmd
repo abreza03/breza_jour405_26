@@ -7,3 +7,37 @@ Date: 05/13/26
 ## We often hear dialogue in professional sports leagues surrounding money spent and team success. Typically, this dialogue surrounds the MLB, because its financial structure is unique compared to the other major professional leagues. The MLB does not have a salary cap or a salary floor, meaning there is no limit to how much or how little a team can spend on players. The first thing that I'm going to look at is to see if the claim that the more a team spends in the MLB, the more they win (in this initial scenario, our null hypothesis.) ## 
 
 ## The sorts of statistical methods that I'm going to focus on include correlation between team spending & wins, linear & multiple regression (multiple when we add in more stats later on), z-scores to analyze league averages, and then a final chart to map where teas fell in relation to both our main categories. ## 
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+## To begin, I loaded the tidyverse and dplyr and imported my MLB Data set, which I compiled myself. The chart includes all 30 MLB teams, their conferences & divisions, how large their payroll was, and their win/loss totals, dating back the last 10 seasons. All data is courtesy of baseballreference.com and stevetheump.com. ##
+
+```{r}
+glimpse(MLB_Data)
+```
+## My first goal is to take a look at the 10 winngest teams across the last decade. ##
+
+## Note: My original goal was to look at the 10 highest spending teams, but it appears like there were some issues in conversion for R, so it's unable to arrange the values correctly. I'll do my best to make it work regardless. ##
+
+```{r}
+MLB_Data |>
+  arrange(desc(WINS))
+```
+## My first observation here is that the 10 teams with the most amount of wins in a season over the last decade all come from major U.S. markets, and all but two (the Yankees and the Giants) have won a World Series during that time span. ##
+
+## The next thing I'm going to do is create a new column representing if the team made the playoffs that year by setting a limit of having a winning record. To account for teams that did not make it with a winning record, and to exclude the 2020 season when only 60 games were played, I'll create a new dataset. ##
+
+```{r}
+MLB_filtered <- MLB_Data |>
+  filter(YEAR != "2020") |>
+  mutate(
+    PLAYOFFS = WINS > 81)
+```
+
+```{r}
+MLB_filtered |>
+  filter(PLAYOFFS == TRUE)
+```
+## While narrowing this data down thus far has proven useful, because the MLB expanded the playoff field from 10 teams to 5 in 2022 (excluding 2020), I'm going to leave it at this. I think this is fair, because there are very few teams on this current list that did not make the playoffs, and the purpose of this exercise won't be focusing on them. ##
