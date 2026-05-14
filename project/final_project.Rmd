@@ -3,3 +3,7 @@ title: "Analyzing the relationship between team spending and wins in the MLB & N
 Author: Andrew Breza
 Date: 05/13/26
 ---
+
+## We often hear dialogue in professional sports leagues surrounding money spent and team success. Typically, this dialogue surrounds the MLB, because its financial structure is unique compared to the other major professional leagues. The MLB does not have a salary cap or a salary floor, meaning there is no limit to how much or how little a team can spend on players. The first thing that I'm going to look at is to see if the claim that the more a team spends in the MLB, the more they win (in this initial scenario, our null hypothesis.) ## 
+
+## The sorts of statistical methods that I'm going to focus on include correlation between team spending & wins, linear & multiple regression (multiple when we add in more stats later on), z-scores to analyze league averages, and then a final chart to map where teas fell in relation to both our main categories. ## 
