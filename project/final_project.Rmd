@@ -6,7 +6,7 @@ Date: 05/13/26
 
 ## We often hear dialogue in professional sports leagues surrounding money spent and team success. Typically, this dialogue surrounds the MLB, because its financial structure is unique compared to the other major professional leagues. The MLB does not have a salary cap or a salary floor, meaning there is no limit to how much or how little a team can spend on players. The first thing that I'm going to look at is to see if the claim that the more a team spends in the MLB, the more they win (in this initial scenario, our null hypothesis.) ## 
 
-## The sorts of statistical methods that I'm going to focus on include correlation between team spending & wins, linear & multiple regression (multiple when we add in more stats later on), z-scores to analyze league averages, and then a final chart to map where teas fell in relation to both our main categories. ## 
+## The sorts of statistical methods that I'm going to focus on include correlation between team spending & wins, linear & multiple regression (multiple when we add in more stats later on), z-scores to analyze league averages, and then a final chart to map where teams fell in relation to both our main categories. ## 
 
 ```{r}
 library(tidyverse)
@@ -25,19 +25,74 @@ glimpse(MLB_Data)
 MLB_Data |>
   arrange(desc(WINS))
 ```
-## My first observation here is that the 10 teams with the most amount of wins in a season over the last decade all come from major U.S. markets, and all but two (the Yankees and the Giants) have won a World Series during that time span. ##
+## My first observation here is that the 10 teams with the most amount of wins in a season over the last decade all come from major U.S. markets, and all but two (the Yankees and the Giants) have won a World Series during that time span. The markets play a big factor here, since MLB team revenue is impacted by tickets sold, merchandise sold, and other related factors. ##
 
-## The next thing I'm going to do is create a new column representing if the team made the playoffs that year by setting a limit of having a winning record. To account for teams that did not make it with a winning record, and to exclude the 2020 season when only 60 games were played, I'll create a new dataset. ##
+## The next thing I'm going to do is create a scatterplot to see if at first glance, there's any correlation between payroll and number of wins. To make this chart easier, I'm going to filter out the 2020 season, when only 60 games were played and overall payrolls were significantly reduced due to the coronavirus. ##
 
 ```{r}
 MLB_filtered <- MLB_Data |>
-  filter(YEAR != "2020") |>
-  mutate(
-    PLAYOFFS = WINS > 81)
+  filter(YEAR != "2020")
 ```
 
 ```{r}
-MLB_filtered |>
-  filter(PLAYOFFS == TRUE)
+MLB_filtered |> 
+  ggplot() +
+    geom_point(aes(x = PAYROLL, y = WINS))
 ```
-## While narrowing this data down thus far has proven useful, because the MLB expanded the playoff field from 10 teams to 5 in 2022 (excluding 2020), I'm going to leave it at this. I think this is fair, because there are very few teams on this current list that did not make the playoffs, and the purpose of this exercise won't be focusing on them. ##
+## Although it's a messy chart due to the size of our payrolls, it doesn't appear like there is any correlation between how much money a team spends and their number of wins. Of course, since we're looking back over a decade, payrolls have steadily increased (excluding 2020) due to TV & media rights deals, the same being true for the NFL. However, let's test it regardless. Instead of using just correlation language, I also want to see p-value, Adjusted R-squared, and our coefficients. ##
+
+```{r}
+model <- lm.fit(`PAYROLL` ~ `WINS`, data = MLB_filtered)
+summary(model)
+```
+## I've tried re-working this a number of different ways, and keep getting an error message regardless of what I try. I believe it's related to the fact that I have two values in payroll with no dollar sign, which is occurring for some reason unbeknownst to me - I went back in my google sheet and tried to add them, but it wouldn't let me. At the same time though, I've noticed that even with those two values aside, R is for some reason ordering payrolls based on the first two digits, so numbers like the 2022 Athletics ($32,548,334) are between the 2024 and 2025 Mets ($301,731,074 & $321,594,220). I'm at a loss on how to fix this and am concerned I'll run into the same problem with my NFL data. Regardless, I'm going to code as much as possible. ##
+
+## NOTES HERE FOR FINAL MLB FINDINGS, ASSUMING PROBLEMS ARE SOLVED. ## 
+
+## Now that we've analyzed the MLB, my next question was: is it the same case in the NFL? As I said earlier, the two leagues have very different financial structures. The NFL does have a salary cap and the money each team is able to spend is not impacted by things such as tickets & merchandise sold. How does the comparison look? ##
+
+```{r}
+NFL_Data |>
+  arrange(desc(`TEAM SPENDING`))
+```
+## Right off the bat, it seems that the NFL data works much better, due to no heavy changes in dollar amounts and no errors. At first glance, it appears that there isn't much correlation at all between team spending and number of wins, as multiple of the top spending teams in the last decade finished with a losing record. There are other factors to equate into this, but let's test it regardless. 
+
+```{r}
+NFL_Data |> 
+  ggplot() +
+    geom_point(aes(x = `TEAM SPENDING`, y = WINS))
+```
+## While a lot more uniform than the MLB chart, it still appears as if there's no correlation at first glance. Let's test it once more. ##
+
+```{r}
+model <- lm(`TEAM SPENDING` ~ `WINS`, data = NFL_Data)
+summary(model)
+```
+## I think the issue here might be size of the numbers in team spending, so I'm going to convert them from nine figure numbers into three figure numbers back in Google sheets.
+
+```{r}
+model <- lm(`TEAM SPENDING` ~ `WINS`, data = NFL_Data_Clean)
+summary(model)
+```
+## I'm officially lost on what to do here. I'll keep coding as much as I can but definitely want to incorporate this data if I'm able to. ##
+
+## First, let's take a look at some numbers in spending in the league across the decade: the mean, median, maximum, minimum, and the standard deviation. ##
+
+```{r}
+NFL_Data_Clean |>
+  summarise(
+    mean_spending = mean(`TEAM SPENDING`),
+    sd_spending = sd(`TEAM SPENDING`),
+    median_spending = median(`TEAM SPENDING`),
+    max_spending = max(`TEAM SPENDING`),
+    min_spending = min(`TEAM SPENDING`)
+  )
+```
+## I understand that here, I'd have to calculate a total in order to get mean, median and standard deviation, but am unable to. Not sure if it's because the numbers are too big in the original spreadsheet or if it's unable to add the "M" in the clean spreadsheet. My idea was to show league averages across that time, calculate z-scores, then apply those lines to my original scatterplot, as well as create smaller bins of the highest spending and the lowest spending teams with those variables. 
+
+```{r}
+NFL_Data_Clean |> summarize(correlation = cor(`TEAM SPENDING`, WINS, method = "pearson"))
+```
+## Next steps for me before we meet tomorrow: I'm going to add in the NFL total salary cap number by year, convert my current numbers to 000.00 (reflecting millions in the column header), and try some of these steps again. ## 
+```
+
