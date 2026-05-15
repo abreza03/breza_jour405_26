@@ -1,0 +1,301 @@
+YEAR,TEAM,PAYROLL (in millions),DIVISION,WINS,LOSSES
+2016,Dodgers,$223.35,NL West,91,71
+2017,Dodgers,$242.07,NL West,104,58
+2018,Dodgers,$186.14,NL West,92,71
+2019,Dodgers,$196.73,NL West,106,56
+2020,Dodgers,$105.75,NL West,43,17
+2021,Dodgers,$235.41,NL West,106,56
+2022,Dodgers,$277.11,NL West,111,51
+2023,Dodgers,$218.33,NL West,100,62
+2024,Dodgers,$220.69,NL West,98,64
+2025,Dodgers,$331.01,NL West,93,69
+2016,Yankees,$213.47,AL East,84,78
+2017,Yankees,$201.54,AL East,91,71
+2018,Yankees,$168.54,AL East,100,62
+2019,Yankees,$208.08,AL East,103,59
+2020,Yankees,$110.85,AL East,33,27
+2021,Yankees,$191.21,AL East,92,70
+2022,Yankees,$240.29,AL East,99,63
+2023,Yankees,$268.95,AL East,82,80
+2024,Yankees,$293.67,AL East,94,68
+2025,Yankees,$287.55,AL East,94,68
+2016,Red Sox,$182.16,AL East,93,69
+2017,Red Sox,$199.81,AL East,93,69
+2018,Red Sox,$235.65,AL East,108,54
+2019,Red Sox,$222.17,AL East,84,78
+2020,Red Sox,$84.48,AL East,24,36
+2021,Red Sox,$180.26,AL East,92,70
+2022,Red Sox,$195.17,AL East,78,84
+2023,Red Sox,$175.78,AL East,78,84
+2024,Red Sox,$162.32,AL East,81,81
+2025,Red Sox,$197.96,AL East,89,73
+2016,Tigers,$172.28,AL Central,86,75
+2017,Tigers,$199.75,AL Central,64,98
+2018,Tigers,$129.92,AL Central,64,98
+2019,Tigers,$116.48,AL Central,47,114
+2020,Tigers,$43.07,AL Central,23,35
+2021,Tigers,$80.40,AL Central,77,85
+2022,Tigers,$116.04,AL Central,66,96
+2023,Tigers,$105.34,AL Central,78,84
+2024,Tigers,$95.07,AL Central,86,76
+2025,Tigers,$143.67,AL Central,87,75
+2016,Giants,$166.50,NL West,87,75
+2017,Giants,$172.35,NL West,64,98
+2018,Giants,$208.51,NL West,73,89
+2019,Giants,$178.29,NL West,77,85
+2020,Giants,$71.17,NL West,29,31
+2021,Giants,$127.89,NL West,107,55
+2022,Giants,$142.29,NL West,81,81
+2023,Giants,$175.59,NL West,79,83
+2024,Giants,$188.77,NL West,80,82
+2025,Giants,$169.92,NL West,81,81
+2016,Nationals,$166.01,NL East,95,67
+2017,Nationals,$167.85,NL East,97,65
+2018,Nationals,$181.59,NL East,82,80
+2019,Nationals,$161.88,NL East,93,69
+2020,Nationals,$66.53,NL East,26,34
+2021,Nationals,$161.91,NL East,65,97
+2022,Nationals,$114.62,NL East,55,107
+2023,Nationals,$79.98,NL East,71,91
+2024,Nationals,$95.37,NL East,71,91
+2025,Nationals,$113.02,NL East,66,96
+2016,Angels,$146.45,AL West,74,88
+2017,Angels,$160.38,AL West,80,82
+2018,Angels,$175.10,AL West,80,82
+2019,Angels,$159.38,AL West,72,90
+2020,Angels,$69.28,AL West,26,34
+2021,Angels,$177.35,AL West,77,85
+2022,Angels,$169.41,AL West,73,89
+2023,Angels,$204.09,AL West,73,89
+2024,Angels,$158.82,AL West,63,99
+2025,Angels,$192.40,AL West,72,90
+2016,Rangers,$144.31,AL West,95,67
+2017,Rangers,$175.91,AL West,78,84
+2018,Rangers,$144.00,AL West,67,95
+2019,Rangers,$127.66,AL West,78,84
+2020,Rangers,$63.69,AL West,22,38
+2021,Rangers,$84.87,AL West,60,102
+2022,Rangers,$134.96,AL West,68,94
+2023,Rangers,$183.58,AL West,90,72
+2024,Rangers,$221.96,AL West,78,84
+2025,Rangers,$214.39,AL West,81,81
+2016,Phillies,$133.05,NL East,71,91
+2017,Phillies,$111.38,NL East,66,96
+2018,Phillies,$96.85,NL East,80,82
+2019,Phillies,$140.71,NL East,81,81
+2020,Phillies,$74.60,NL East,28,32
+2021,Phillies,$174.01,NL East,82,80
+2022,Phillies,$221.74,NL East,87,75
+2023,Phillies,$232.42,NL East,90,72
+2024,Phillies,$236.18,NL East,95,67
+2025,Phillies,$283.23,NL East,96,66
+2016,Blue Jays,$126.37,AL East,89,73
+2017,Blue Jays,$177.80,AL East,76,86
+2018,Blue Jays,$162.32,AL East,73,89
+2019,Blue Jays,$112.04,AL East,67,95
+2020,Blue Jays,$50.99,AL East,32,28
+2021,Blue Jays,$137.13,AL East,91,71
+2022,Blue Jays,$168.07,AL East,92,70
+2023,Blue Jays,$205.68,AL East,89,73
+2024,Blue Jays,$221.88,AL East,74,88
+2025,Blue Jays,$243.33,AL East,94,68
+2016,Mariners,$122.71,AL West,86,76
+2017,Mariners,$154.80,AL West,78,84
+2018,Mariners,$162.48,AL West,89,73
+2019,Mariners,$150.91,AL West,68,94
+2020,Mariners,$48.42,AL West,27,33
+2021,Mariners,$64.55,AL West,90,72
+2022,Mariners,$92.75,AL West,90,72
+2023,Mariners,$129.81,AL West,88,74
+2024,Mariners,$129.16,AL West,85,77
+2025,Mariners,$147.90,AL West,90,72
+2016,Cardinals,$120.30,NL Central,86,76
+2017,Cardinals,$152.45,NL Central,83,79
+2018,Cardinals,$161.01,NL Central,88,74
+2019,Cardinals,$162.83,NL Central,91,71
+2020,Cardinals,$70.45,NL Central,30,28
+2021,Cardinals,$135.05,NL Central,90,72
+2022,Cardinals,$150.75,NL Central,93,69
+2023,Cardinals,$147.77,NL Central,71,91
+2024,Cardinals,$164.30,NL Central,83,79
+2025,Cardinals,$135.86,NL Central,78,84
+2016,Reds,$116.73,NL Central,68,94
+2017,Reds,$93.77,NL Central,68,94
+2018,Reds,$101.19,NL Central,67,95
+2019,Reds,$126.42,NL Central,75,87
+2020,Reds,$53.32,NL Central,31,29
+2021,Reds,$118.75,NL Central,83,79
+2022,Reds,$99.58,NL Central,62,100
+2023,Reds,$86.37,NL Central,82,80
+2024,Reds,$88.12,NL Central,77,85
+2025,Reds,$116.67,NL Central,83,79
+2016,Cubs,$116.65,NL Central,103,58
+2017,Cubs,$172.19,NL Central,92,70
+2018,Cubs,$183.46,NL Central,95,68
+2019,Cubs,$210.36,NL Central,84,78
+2020,Cubs,$76.17,NL Central,34,26
+2021,Cubs,$149.67,NL Central,71,91
+2022,Cubs,$130.56,NL Central,74,88
+2023,Cubs,$180.12,NL Central,83,79
+2024,Cubs,$216.33,NL Central,83,79
+2025,Cubs,$192.72,NL Central,92,70
+2016,Orioles,$115.59,AL East,89,73
+2017,Orioles,$163.68,AL East,75,87
+2018,Orioles,$143.09,AL East,47,115
+2019,Orioles,$72.72,AL East,54,108
+2020,Orioles,$23.92,AL East,25,35
+2021,Orioles,$45.70,AL East,52,110
+2022,Orioles,$30.22,AL East,83,79
+2023,Orioles,$64.91,AL East,101,61
+2024,Orioles,$94.50,AL East,91,71
+2025,Orioles,$164.27,AL East,75,87
+2016,Royals,$112.91,AL Central,81,81
+2017,Royals,$140.93,AL Central,80,82
+2018,Royals,$129.92,AL Central,58,104
+2019,Royals,$100.66,AL Central,59,103
+2020,Royals,$35.63,AL Central,26,34
+2021,Royals,$87.78,AL Central,74,88
+2022,Royals,$74.11,AL Central,65,97
+2023,Royals,$75.83,AL Central,56,106
+2024,Royals,$105.22,AL Central,86,76
+2025,Royals,$126.41,AL Central,82,80
+2016,Padres,$112.90,NL West,68,94
+2017,Padres,$71.62,NL West,71,91
+2018,Padres,$96.13,NL West,66,96
+2019,Padres,$99.21,NL West,70,92
+2020,Padres,$69.47,NL West,37,23
+2021,Padres,$171.69,NL West,79,83
+2022,Padres,$208.77,NL West,89,73
+2023,Padres,$236.96,NL West,82,80
+2024,Padres,$153.77,NL West,93,69
+2025,Padres,$209.33,NL West,90,72
+2016,Twins,$108.26,AL Central,59,103
+2017,Twins,$108.08,AL Central,85,77
+2018,Twins,$131.91,AL Central,78,84
+2019,Twins,$121.28,AL Central,101,61
+2020,Twins,$48.75,AL Central,36,24
+2021,Twins,$121.00,AL Central,73,89
+2022,Twins,$110.86,AL Central,78,84
+2023,Twins,$141.27,AL Central,87,75
+2024,Twins,$118.89,AL Central,82,80
+2025,Twins,$145.86,AL Central,70,92
+2016,Mets,$99.63,NL East,87,75
+2017,Mets,$155.19,NL East,70,92
+2018,Mets,$154.61,NL East,77,85
+2019,Mets,$159.00,NL East,86,76
+2020,Mets,$80.30,NL East,26,34
+2021,Mets,$167.42,NL East,77,85
+2022,Mets,$253.12,NL East,101,61
+2023,Mets,$334.23,NL East,75,87
+2024,Mets,$301.73,NL East,89,73
+2025,Mets,$321.59,NL East,83,79
+2016,White Sox,$98.71,AL Central,78,84
+2017,White Sox,$99.12,AL Central,67,95
+2018,White Sox,$72.18,AL Central,62,100
+2019,White Sox,$89.35,AL Central,72,89
+2020,White Sox,$51.40,AL Central,35,25
+2021,White Sox,$125.99,AL Central,93,69
+2022,White Sox,$181.66,AL Central,81,81
+2023,White Sox,$180.91,AL Central,61,101
+2024,White Sox,$117.77,AL Central,41,121
+2025,White Sox,$73.70,AL Central,60,102
+2016,Brewers,$98.68,NL Central,73,89
+2017,Brewers,$63.06,NL Central,86,76
+2018,Brewers,$90.24,NL Central,96,67
+2019,Brewers,$124.76,NL Central,89,73
+2020,Brewers,$39.41,NL Central,29,31
+2021,Brewers,$87.57,NL Central,95,67
+2022,Brewers,$122.28,NL Central,86,76
+2023,Brewers,$108.64,NL Central,92,70
+2024,Brewers,$94.48,NL Central,93,69
+2025,Brewers,$110.84,NL Central,96,65
+2016,Rockies,$98.26,NL West,75,87
+2017,Rockies,$130.96,NL West,87,75
+2018,Rockies,$141.34,NL West,91,72
+2019,Rockies,$147.43,NL West,71,91
+2020,Rockies,$60.33,NL West,26,34
+2021,Rockies,$103.99,NL West,74,87
+2022,Rockies,$129.45,NL West,68,94
+2023,Rockies,$166.25,NL West,59,103
+2024,Rockies,$134.10,NL West,61,101
+2025,Rockies,$121.47,NL West,43,119
+2016,Braves,$87.62,NL East,68,93
+2017,Braves,$112.44,NL East,72,90
+2018,Braves,$120.54,NL East,90,72
+2019,Braves,$113.78,NL East,97,65
+2020,Braves,$66.28,NL East,35,25
+2021,Braves,$134.46,NL East,88,73
+2022,Braves,$173.94,NL East,101,61
+2023,Braves,$199.73,NL East,104,58
+2024,Braves,$225.32,NL East,89,73
+2025,Braves,$215.26,NL East,76,86
+2016,Guardians,$86.34,AL Central,94,67
+2017,Guardians,$124.86,AL Central,102,60
+2018,Guardians,$134.35,AL Central,91,71
+2019,Guardians,$119.24,AL Central,93,69
+2020,Guardians,$37.64,AL Central,35,25
+2021,Guardians,$46.83,AL Central,80,82
+2022,Guardians,$42.31,AL Central,92,70
+2023,Guardians,$75.01,AL Central,76,86
+2024,Guardians,$86.43,AL Central,92,69
+2025,Guardians,$99.59,AL Central,88,74
+2016,Pirates,$85.89,NL Central,78,83
+2017,Pirates,$100.58,NL Central,75,87
+2018,Pirates,$87.88,NL Central,82,79
+2019,Pirates,$76.59,NL Central,69,93
+2020,Pirates,$24.77,NL Central,19,41
+2021,Pirates,$35.91,NL Central,61,101
+2022,Pirates,$37.88,NL Central,62,100
+2023,Pirates,$60.79,NL Central,76,86
+2024,Pirates,$72.01,NL Central,76,86
+2025,Pirates,$83.76,NL Central,71,91
+2016,Marlins,$84.64,NL East,79,82
+2017,Marlins,$111.88,NL East,77,85
+2018,Marlins,$98.64,NL East,63,98
+2019,Marlins,$72.45,NL East,57,105
+2020,Marlins,$28.56,NL East,31,29
+2021,Marlins,$49.43,NL East,67,95
+2022,Marlins,$69.00,NL East,69,93
+2023,Marlins,$81.08,NL East,84,78
+2024,Marlins,$83.71,NL East,62,100
+2025,Marlins,$68.00,NL East,79,83
+2016,Athletics,$80.28,AL West,69,93
+2017,Athletics,$81.74,AL West,75,87
+2018,Athletics,$68.53,AL West,97,65
+2019,Athletics,$99.21,AL West,97,65
+2020,Athletics,$35.52,AL West,36,24
+2021,Athletics,$74.62,AL West,86,76
+2022,Athletics,$32.55,AL West,60,102
+2023,Athletics,$43.15,AL West,50,112
+2024,Athletics,$47.91,AL West,69,93
+2025,Athletics,$74.04,AL West,76,86
+2016,Rays,$73.65,AL East,68,94
+2017,Rays,$69.96,AL East,80,82
+2018,Rays,$78.73,AL East,90,72
+2019,Rays,$60.44,AL East,96,66
+2020,Rays,$28.74,AL East,40,20
+2021,Rays,$60.39,AL East,100,62
+2022,Rays,$75.35,AL East,86,76
+2023,Rays,$64.65,AL East,99,63
+2024,Rays,$88.07,AL East,80,82
+2025,Rays,$88.73,AL East,77,85
+2016,Diamondbacks,$70.76,NL West,69,93
+2017,Diamondbacks,$93.26,NL West,93,69
+2018,Diamondbacks,$132.50,NL West,82,80
+2019,Diamondbacks,$123.93,NL West,85,77
+2020,Diamondbacks,$64.20,NL West,25,35
+2021,Diamondbacks,$89.08,NL West,52,100
+2022,Diamondbacks,$75.99,NL West,74,88
+2023,Diamondbacks,$112.76,NL West,84,78
+2024,Diamondbacks,$156.51,NL West,89,73
+2025,Diamondbacks,$184.16,NL West,80,82
+2016,Astros,$69.06,AL West,84,78
+2017,Astros,$124.34,AL West,101,61
+2018,Astros,$160.04,AL West,103,59
+2019,Astros,$160.77,AL West,107,55
+2020,Astros,$81.85,AL West,29,31
+2021,Astros,$171.02,AL West,95,67
+2022,Astros,$163.94,AL West,106,56
+2023,Astros,$180.89,AL West,90,72
+2024,Astros,$237.30,AL West,88,73
+2025,Astros,$218.64,AL West,87,75

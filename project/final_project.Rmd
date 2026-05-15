@@ -17,7 +17,7 @@ library(dplyr)
 ```{r}
 glimpse(MLB_Data)
 ```
-## My first goal is to take a look at the 10 winngest teams across the last decade. ##
+## My first goal is to take a look at the 10 winningest teams across the last decade. ##
 
 ## Note: My original goal was to look at the 10 highest spending teams, but it appears like there were some issues in conversion for R, so it's unable to arrange the values correctly. I'll do my best to make it work regardless. ##
 

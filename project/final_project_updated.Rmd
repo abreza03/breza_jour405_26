@@ -1,0 +1,96 @@
+---
+title: "Analyzing the relationship between team spending and wins in the MLB & NFL"
+Author: Andrew Breza
+Date: 05/13/26
+---
+
+## We often hear dialogue in professional sports leagues surrounding money spent and team success. Typically, this dialogue surrounds the MLB, because its financial structure is unique compared to the other major professional leagues. The MLB does not have a salary cap or a salary floor, meaning there is no limit to how much or how little a team can spend on players. The first thing that I'm going to look at is to see if the claim that the more a team spends in the MLB, the more they win (in this initial scenario, our null hypothesis.) ## 
+
+## The sorts of statistical methods that I'm going to focus on include correlation between team spending & wins, linear & multiple regression (multiple when we add in more stats later on), z-scores to analyze league averages, and then a final chart to map where teams fell in relation to both our main categories. ## 
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+## To begin, I loaded the tidyverse and dplyr and imported my MLB Data set, which I compiled myself. The chart includes all 30 MLB teams, their conferences & divisions, how large their payroll was, and their win/loss totals, dating back the last 10 seasons. All data is courtesy of baseballreference.com and stevetheump.com. ##
+
+```{r}
+mlb <- read_csv("MLB_Final_Data.csv") |>
+  mutate(
+    PAYROLL_IN_MILLIONS = parse_number(`PAYROLL (in millions)`)
+  )
+
+glimpse(mlb)
+```
+
+## My first goal is to take a look at the 10 highest spending teams across the last decade. For easier readability and comprehension, I'm going to remove the former payroll column and filter out the 2020 season, which only had 50 games played and much lower payrolls due to the coronavirus. ##
+
+```{r}
+mlb_updated <- mlb |>
+  select(-`PAYROLL (in millions)`) |>
+  filter(YEAR != "2020")
+
+mlb_updated |>
+  arrange(desc(PAYROLL_IN_MILLIONS))
+```
+## The first thing that sticks out is that there are only four franchises in the top 10, all of which are in major U.S. markets. Another takeaway is that all of these instances have occurred from 2022-2025. This is partially due to external factors we won't be analyzing, such as growth of revenue in the league and Steve Cohen buying the Mets. However, what sticks out most for our purposes is that all of top 10 teams had a winning record. Let's see if there's any correlation between the two factors. ##
+
+```{r}
+mlb_updated |> summarize(correlation = cor(PAYROLL_IN_MILLIONS, WINS, method = "pearson"))
+```
+## Not a very strong correlation overall. Let's plot this on a scatterplot. ##
+
+```{r}
+mlb_updated |> 
+  ggplot() +
+    geom_point(aes(x = PAYROLL_IN_MILLIONS, y = WINS)) +
+    geom_smooth(aes(x = PAYROLL_IN_MILLIONS, y = WINS, method = 'lm'))
+```
+## The scatterplot shows much of the same, that there really isn't much correlation. However, before we reject our null hypothesis, let's test to see if what we're seeing is random or not using a linear regression model. ##
+
+```{r}
+model <- lm(PAYROLL_IN_MILLIONS ~ `WINS`, data = mlb_updated)
+summary(model)
+```
+## While our p-value is statistically significant, our Adjusted R-squared value and coefficients are very low, suggesting that the amount of money a team spends does not impact the number of wins they have by very much. ##
+
+## Although I'd like to continue a further exploration into that with "baseballr", the sheer volume of data across 10 MLB seasons would be incredibly difficult to sift through. For the time being, despite it being over two decades ago, it seems that the Moneyball strategy holds up, at least partially. ## 
+
+## Now that we've analyzed the MLB, my next question was: is it the same case in the NFL? As I said earlier, the two leagues have very different financial structures. The NFL does have a salary cap and the money each team is able to spend is not impacted by things such as tickets & merchandise sold. How does the comparison look? ## 
+
+```{r}
+nfl <- read_csv("NFL_Final_data.csv")
+```
+## Although the NFL wasn't impacted as heavily as the MLB by the coronavirus, playing a full season, the NFL salary cap was tremendously impacted, as you can see below:
+
+```{r}
+nfl |>
+  filter(TEAM == "NFL")
+```
+
+## After steadily rising in each year prior, the league wide salary cap after the COVID season fell by almost $16 million, meaning teams spent far less. So, we'll once again filter out the 2020 season, as well as make the other adjustments that we made for the MLB data. ##
+
+```{r}
+nfl_updated <- nfl |>
+  mutate(
+    SPENDING_IN_MILLIONS = parse_number(`SPENDING (in millions)`)) |>
+  select(-`SPENDING (in millions)`) |>
+  filter(YEAR != "2020")
+```
+
+## Once again, let's see if there's any correlation between spending and wins. ##
+
+```{r}
+nfl_updated |> summarize(correlation = cor(SPENDING_IN_MILLIONS, WINS, method = "pearson"))
+```
+## COME BACK TO THIS ##
+
+## Let's throw it on a scatterplot. ##
+
+```{r}
+nfl_updated |> 
+  ggplot() +
+    geom_point(aes(x = SPENDING_IN_MILLIONS, y = WINS)) +
+    geom_smooth(aes(x = SPENDING_IN_MILLIONS, y = WINS, method = 'lm'))
+```
+## Resume work here after discussion tomorrow. ##
