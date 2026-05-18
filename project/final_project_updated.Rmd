@@ -72,10 +72,12 @@ nfl |>
 
 ```{r}
 nfl_updated <- nfl |>
+  filter(YEAR != "2020", TEAM != "NFL") |>
   mutate(
-    SPENDING_IN_MILLIONS = parse_number(`SPENDING (in millions)`)) |>
-  select(-`SPENDING (in millions)`) |>
-  filter(YEAR != "2020")
+    SPENDING_IN_MILLIONS = parse_number(`SPENDING (in millions)`),
+    WINS = parse_number(WINS),
+    LOSSES = parse_number(LOSSES)) |>
+  select(-`SPENDING (in millions)`)
 ```
 
 ## Once again, let's see if there's any correlation between spending and wins. ##
@@ -83,7 +85,7 @@ nfl_updated <- nfl |>
 ```{r}
 nfl_updated |> summarize(correlation = cor(SPENDING_IN_MILLIONS, WINS, method = "pearson"))
 ```
-## COME BACK TO THIS ##
+## We get an extremely low correlation, far lower than what we saw in the MLB Data. ##
 
 ## Let's throw it on a scatterplot. ##
 
@@ -93,4 +95,110 @@ nfl_updated |>
     geom_point(aes(x = SPENDING_IN_MILLIONS, y = WINS)) +
     geom_smooth(aes(x = SPENDING_IN_MILLIONS, y = WINS, method = 'lm'))
 ```
-## Resume work here after discussion tomorrow. ##
+## The scatterplot confirms the same: there is very little correlation here. Once again, before rejecting our null hypothesis, we'll run a linear regression model. ##
+
+```{r}
+model <- lm(SPENDING_IN_MILLIONS ~ `WINS`, data = nfl_updated)
+summary(model)
+```
+## Again, we get a statistically significant p-value, but our Adjusted R-squared and coefficients suggest that the impact on spending to wins is incredibly low. ##
+
+## Before adding more data, what I first want to do is take a look at some league wide numbers and plot them. I'm going to calculate the mean, median, maxiumum, minimum, and standard deviation of this data set to plot. ##
+
+```{r}
+nfl_averages <- nfl_updated |>
+  mutate(
+    total_spending = sum(SPENDING_IN_MILLIONS),
+    mean_spending = mean(SPENDING_IN_MILLIONS),
+    sd_spending = sd(SPENDING_IN_MILLIONS),
+    median_spending = median(SPENDING_IN_MILLIONS),
+    max_spending = max(SPENDING_IN_MILLIONS),
+    min_spending = min(SPENDING_IN_MILLIONS)
+  )
+```
+## Adjusting to the millions, we can see that the total amount of spending in our data set was about $63.02 billion. Now we'll create a better scatterplot to see where teams fell. ##
+
+```{r}
+nfl_averages |>
+  ggplot() +
+  geom_point(aes(x = SPENDING_IN_MILLIONS, y = WINS)) +
+  geom_smooth(aes(x = SPENDING_IN_MILLIONS, y = WINS, method = 'lm')) +
+  geom_vline(aes(xintercept = mean_spending), color = "red", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = mean_spending - sd_spending), color = "blue", linetype = "dashed", size = 1) +
+  geom_vline(aes(xintercept = mean_spending + sd_spending), color = "blue", linetype = "dashed", size = 1)
+```
+
+## Let's add more data to see if spending impacted any other team performance metrics. ##
+
+```{r}
+install.packages("nflfastR")
+library(nflfastR)
+```
+```{r}
+nfl_pbp <- load_pbp(2016:2025)
+
+nfl_pbp_no_2020 <- nfl_pbp |>
+  filter(season != 2020)
+```
+## Let's start by organizing our massive data set into total team metrics per year. The metrics I've chosen to analyze include yards gained, yards after catch, touchdowns, score differential, expected points added, interceptions, fumbles, penalties, and penalty yards. ##
+
+```{r}
+team_metrics <- nfl_pbp_no_2020 |>
+  filter(play_type %in% c("run", "pass", "no_play")) |>
+  group_by(posteam, season) |>
+  summarise(
+    total_yards_gained = sum(yards_gained),
+    total_touchdowns = sum(touchdown),
+    total_score_differential = sum(score_differential),
+    total_epa = sum(epa),
+    total_interceptions = sum(interception),
+    total_fumbles = sum(fumble),
+    total_penalties = sum(penalty)
+  )
+```
+## Initially, the columns of yards after catch and penalty yards returned values that were completely N/A, so I filtered them out. From there, I filtered out any existing N/A values in any of the columns. ##
+
+```{r}
+updated_team_metrics <- team_metrics |>
+  filter(if_all(c(total_yards_gained, total_touchdowns, total_score_differential, total_epa, total_interceptions, total_fumbles, total_penalties), ~ !is.na(.)))
+```
+
+## While this leaves us with a smaller dataset then I would have hoped, I don't see another way around it. Now, let's join it with our previous data set. 
+
+```{r}
+colnames(updated_team_metrics)[colnames(updated_team_metrics) == "posteam"] <- "TEAM"
+
+final_chart <- nfl_updated |>
+  inner_join(updated_team_metrics, join_by(TEAM))
+```
+
+## I completely didn't account for the fact that the dataset I created had team names, while nflfastr has abbreviations for location. I'm not sure if there's a way to join these two charts without renaming all the values. I don't want to take up any more of your time, so I'm going to pivot here to simply run a multiple regression model within this data set, to see if any of these factors particularly influence score differential rather than comparing them to spending and number of wins. ##
+
+```{r}
+final_model <- lm(total_score_differential ~ total_yards_gained + total_touchdowns + total_epa + total_interceptions + total_fumbles + total_penalties, data = updated_team_metrics)
+
+summary(final_model)
+```
+## We get a statistically significant p-value and a solid Adjusted R-squared value, but the coefficients are incredibly low. To conclude, I'll create a correlation matrix displaying each of these factors compared to score differential. ##
+
+```{r}
+library(corrplot)
+```
+
+
+```{r}
+updated_team_metrics |>
+  pivot_longer(cols = c(total_yards_gained, total_touchdowns, total_epa, 
+                       total_interceptions, total_fumbles, total_penalties),
+               names_to = "variable", 
+               values_to = "value") |>
+  ggplot(aes(x = value, y = total_score_differential)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ variable, scales = "free_x") +
+  labs(title = "Relationship between predictors and Total Score Differential",
+       y = "Total Score Differential")
+```
+## Because the values were so low, I wasn't able to run a correlation matrix, but was able to create these individual scatterplots. ##
+
+## Although this data exploration didn't go how I had envisioned due to some coding errors, looking at the data manually offers some potential interesting stories. For example, the 2025 Raiders ranked near the bottom of nearly every stat category in the second data set. They spent $280.44 million that year, seventh-lowest in the league for 2025 and finishing below some teams' spending in 2022, 2023, and 2024, despite the NFL's salary cap dramatically rising over each of those years. A majority of the teams above them, regardless of year, were also much better. However, the 2025 Super Bowl champion Seahawks spent $20 million less. The difference between the best team last season and the worst team was that the former spent a lot less money. I think a story pitch that could be developed out of this is: Despite the NFL's salary cap consistently rising, success is more so found in good drafting & spending on pieces surrounding rookie contracts and vital positions. ##
